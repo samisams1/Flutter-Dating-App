@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 class DatingAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
-  Size get preferredSize => Size.fromHeight(50);
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return AppBar(
-      toolbarHeight: 50,
-      titleSpacing: 8,
+      toolbarHeight: screenHeight * 0.08,
+      titleSpacing: screenWidth * 0.02,
       backgroundColor: Color(0xFF0E0D0D),
       elevation: 0,
       title: Row(
@@ -17,24 +20,28 @@ class DatingAppBar extends StatelessWidget implements PreferredSizeWidget {
             children: [
               Icon(
                 Icons.location_on,
-                size: 20,
+                size: screenWidth * 0.05,
                 color: Colors.black,
               ),
               Positioned.fill(
                 child: Icon(
                   Icons.location_on,
-                  size: 20,
+                  size: screenWidth * 0.05,
                   color: Colors.white,
                 ),
               ),
             ],
           ),
-          SizedBox(width: 4),
-          Text(
-            '목이길어슬픈기린님의 새로운 스팟',
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.white,
+          SizedBox(width: screenWidth * 0.01),
+          Expanded(
+            child: Text(
+              '목이길어슬픈기린님의 새로운 스팟',
+              style: TextStyle(
+                fontSize: screenWidth * 0.045,
+                color: Colors.white,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
@@ -45,9 +52,9 @@ class DatingAppBar extends StatelessWidget implements PreferredSizeWidget {
             side: BorderSide(
               color: Color(0x8f8a8a),
             ),
-            minimumSize: Size(90, 30),
+            minimumSize: Size(screenWidth * 0.22, screenHeight * 0.05),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(screenWidth * 0.01),
             ),
           ),
           onPressed: () {
@@ -58,26 +65,27 @@ class DatingAppBar extends StatelessWidget implements PreferredSizeWidget {
             children: [
               Icon(
                 Icons.star,
-                size: 24,
+                size: screenWidth * 0.06,
                 color: Color(0xFFFF0E73),
               ),
-              SizedBox(width: 4),
+              SizedBox(width: screenWidth * 0.01),
               Text(
                 '232,450',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: screenWidth * 0.045,
                   color: Colors.white,
                 ),
               ),
             ],
           ),
         ),
+        SizedBox(width: screenWidth * 0.02),
         Stack(
           children: [
             IconButton(
               icon: Icon(
                 Icons.notifications,
-                size: 24,
+                size: screenWidth * 0.06,
                 color: Colors.white,
               ),
               onPressed: () {
@@ -88,12 +96,13 @@ class DatingAppBar extends StatelessWidget implements PreferredSizeWidget {
               top: 0,
               right: 0,
               child: CircleAvatar(
-                radius: 1,
+                radius: screenWidth * 0.015,
                 backgroundColor: Colors.red,
               ),
             ),
           ],
         ),
+        SizedBox(width: screenWidth * 0.02),
       ],
     );
   }
